@@ -3,6 +3,7 @@
 + [АОП - это](#аоп---это)
 + [Применение АОП](#применение-аоп) 
 + [Основные понятия](#основные-понятия)
++ [Сравнение Spring AOP и AspectJ](#сравнение-spring-aop-и-aspectj)
 + [Spring AOP](#spring-aop)
 + [Источники](#источники)
 ### АОП - это
@@ -74,17 +75,30 @@
 
 Плюсы Spring AOP:
 
+- Проще чем **AspectJ**
+- Использует **proxy pattern**
+- Может измениться на AspectJ, если поставить аннотацию **@Aspect**
+
 Минусы Spring AOP:
+- **Join Points** только на уровне методов
+- Работает только со спринговскими бинами 
+- Плетение во время **runtime**
 
 Плюсы AspectJ:
+- Поддерживает любые **join points**
+- Работает с любыми **POJO**
+- Быстрее чем Spring AOP
+- Полная поддержка AOP
 
 Минусы AspectJ:
+- Плетение во время компиляции требует дополнительный этап компиляции
+- Более сложный синтаксис по сравнению со **Spring AOP**
 
 ### Spring AOP
 
-**Spriong AOP** - конкретная реализация парадигм АОП, реализующая возможности решения сквозных задач.
+**Spring AOP** - конкретная реализация парадигм АОП, реализующая возможности решения сквозных задач.
 
-<!-- Что бы воспользоваться возможностями **АОП** мы можем либо создать файл - **аспект**. Они бывают двух видов: файл с расширением **.aj** или **POJO**, который реализует возможности **АОП** при помощи аннотаций. -->
+**Spring AOP** является **proxy-based** фреймворком. Это значит, что всегда будут создаваться **прокси-объекты** на любой наш бин подпадающий под действие **аспекта**.
 
 Для работы с ним добавляем в приложение эту зависимость
 
@@ -94,6 +108,39 @@
   <artifactId>spring-boot-starter-aop</artifactId>
 </dependency>
 ```
+Класс с бизнес логикой
+
+```java
+public class SampleClass {
+    public int add(int a, int b) {
+        return a + b;
+    }
+}
+```
+Класс Аспекта, где у **Pointcut** используется **wildcard**. Примеры применения **Before** и **After**
+
+```java
+@Aspect
+@Component
+public class Aspect {
+
+    // PointCut with wildcard
+    @Before("execution(* add*())")
+    public void beforeDoSomething() {
+        System.out.println("before work process");
+    }
+    
+    @After("execution(public void add())")
+    public void afterDoSomething() {
+        System.out.println("after work process");
+    }
+}
+```
+### Больше примеров
+
+- [тут](https://www.journaldev.com/2583/spring-aop-example-tutorial-aspect-advice-pointcut-joinpoint-annotations)
+- [оффициальная дока](https://docs.spring.io/spring-framework/docs/4.3.15.RELEASE/spring-framework-reference/html/aop.html)
+- 
 
 ### Источники
 
