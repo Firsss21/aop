@@ -5,6 +5,7 @@
 + [Основные понятия](#основные-понятия)
 + [Сравнение Spring AOP и AspectJ](#сравнение-spring-aop-и-aspectj)
 + [Spring AOP](#spring-aop)
++ [Больше примеров](#больше-примеров)
 + [Источники](#источники)
 ### АОП - это
 
@@ -137,10 +138,7 @@ public class Aspect {
 }
 ```
 ### Больше примеров
-
-- [тут](https://www.journaldev.com/2583/spring-aop-example-tutorial-aspect-advice-pointcut-joinpoint-annotations)
-- [оффициальная дока](https://docs.spring.io/spring-framework/docs/4.3.15.RELEASE/spring-framework-reference/html/aop.html)
-- 
+[тут](https://www.journaldev.com/2583/spring-aop-example-tutorial-aspect-advice-pointcut-joinpoint-annotations) и [тут(документ от спринга)](https://docs.spring.io/spring-framework/docs/4.3.15.RELEASE/spring-framework-reference/html/aop.html)
 
 ### Источники
 
